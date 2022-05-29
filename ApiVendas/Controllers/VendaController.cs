@@ -38,9 +38,9 @@ namespace ApiVendas.Api.Controllers
     public IActionResult PostVenda(VendaModel venda)
     {
       var vendaMapper = _mapper.Map<Venda>(venda);
-      _vendaService.PostVenda(vendaMapper);
+      
 
-      return Accepted();
+      return Ok(_vendaService.PostVenda(vendaMapper));
     }
 
     [HttpPatch]

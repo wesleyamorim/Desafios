@@ -11,7 +11,7 @@ namespace ApiVendas.Domain.Vendas
   {
     Venda GetVenda(Guid idVenda);
     List<Venda> GetAllVendas();
-    void PostVenda(Venda venda);
+    Venda PostVenda(Venda venda);
 
     void AtualizaStatusVenda(Guid idVenda, StatusVenda statusVenda);
   }

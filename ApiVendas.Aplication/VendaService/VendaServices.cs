@@ -27,11 +27,16 @@ namespace ApiVendas.Aplication.VendaService
       return _vendas;
     }
 
-    public void PostVenda(Venda venda)
+    public Venda PostVenda(Venda venda)
     {
       venda.IdVenda = Guid.NewGuid();
       venda.Vendedor.Id = Guid.NewGuid();
       venda.StatusVenda = StatusVenda.AguardandoPagamento;
+
+      foreach (var item in venda.ItemVendas)
+      {
+        item.Id = Guid.NewGuid();
+      }
 
       if (venda.Vendedor == null)
         throw new ArgumentException("A venda deve possuir um vendedor!");
@@ -40,6 +45,8 @@ namespace ApiVendas.Aplication.VendaService
         throw new ArgumentException("A venda deve possuir pelo menos um Item!");
 
       _vendas.Add(venda);
+
+      return GetVenda(venda.IdVenda);
     }
 
 
